@@ -9,7 +9,7 @@ import RandomCat from "~/components/random-cat";
 import TooltipDiv from "~/components/tooltip-div";
 import WordSlideshow from "~/components/word-slideshow";
 import { changeThemes } from "~/utils/darkmode";
-import { logos, projects } from "~/utils/projects";
+import { logos, projects, socials } from "~/utils/projects";
 
 export const gradientColors = ["from-yellow-500 to-amber-600", "from-cyan-500 to-indigo-600", "from-red-500 to-rose-600", "from-teal-500 to-emerald-600"]
 export const textColors = ["text-amber-600 dark:text-amber-400", "text-cyan-600", "text-red-600", "text-teal-600"]
@@ -127,6 +127,17 @@ export default function Index() {
           <div className="h-48 w-48 md:h-64 md:w-64 rounded-full bg-cover bg-center cursor-pointer hover:scale-105 transition" style={{ backgroundImage: "url(avatar.png)" }} />
           <div className="text-2xl md:text-3xl px-10 md:px-8 py-2 my-1 border-b-2 border-primary-light-200">Joshua Lawrence, Jr.</div>
           <div className="md:text-lg font-fira-mono">Junior Fullstack Web Developer</div>
+          <div className="my-5 flex flex-row">
+            {socials.map(acc => <TooltipDiv
+              className="h-10 w-10 shadow-sm mr-4 cursor-pointer hover:scale-[105%] transition-transform text-white flex justify-center items-center"
+              tooltipText={acc.name}
+              size="large"
+              link={acc.url}
+              key={v4().slice(0, 9)}
+            >
+              {acc.children}
+            </TooltipDiv>)}
+          </div>
         </div>
         {particles.split("").map((_, i) => <div className={`absolute opacity-0 rounded-full w-4 h-4 bg-primary-light-200 drop-shadow-[0_0_65px_0_rgba(220,220,220,0.3)] particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
       </div>
