@@ -152,7 +152,7 @@ const value = format("hello")`
         })
     }, [])
 
-    return <div className="h-48 bg-primary-dark-900 rounded-lg p-3 border border-primary-dark-950 w-full md:max-w-[30rem] max-w-full font-fira-mono">
+    return <div className="h-48 bg-primary-dark-900 rounded-lg p-3 border border-primary-dark-950 w-full md:max-w-[20rem] lg:max-w-[30rem] max-w-full font-fira-mono">
         <pre className='whitespace-pre-wrap'>
             {displayedMessage}<span className={`-translate-x-3 cursor ${textColors[index]}`}>|</span>
         </pre>
