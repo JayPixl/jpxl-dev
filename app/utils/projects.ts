@@ -70,5 +70,22 @@ export const projects: {
             skillsDemonstrated: [
 
             ]
+        },
+        {
+            title: "pixel-crypt",
+            imageUrl: "screenshots/pixelcrypt.png",
+            blurb: "I created a simple npm encryption package to demonstrate my knowledge and skills with npm modules and TypeScript, and this demo is a frontend app built with React and TailwindCSS.",
+            longDescription: "",
+            mainTools: [
+                "React",
+                "TailwindCSS",
+                "Vite"
+            ],
+            tools: [
+
+            ],
+            skillsDemonstrated: [
+
+            ]
         }
     ]
