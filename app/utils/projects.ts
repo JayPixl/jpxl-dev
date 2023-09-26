@@ -25,6 +25,10 @@ export const logos: {
         {
             name: "Vite",
             url: "logos/vite.png"
+        },
+        {
+            name: "Anime.js",
+            url: "https://th.bing.com/th/id/OIP.FSB1_EVM6flG5hK4GWQ-6AHaHa?pid=ImgDet&rs=1"
         }
     ]
 
@@ -72,14 +76,14 @@ export const projects: {
             ]
         },
         {
-            title: "pixel-crypt",
-            imageUrl: "screenshots/pixelcrypt.png",
-            blurb: "I created a simple npm encryption package to demonstrate my knowledge and skills with npm modules and TypeScript, and this demo is a frontend app built with React and TailwindCSS.",
+            title: "jpxl.dev",
+            imageUrl: "screenshots/jpxl-dev.png",
+            blurb: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
             longDescription: "",
             mainTools: [
-                "React",
-                "TailwindCSS",
-                "Vite"
+                "Remix",
+                "Anime.js",
+                "TailwindCSS"
             ],
             tools: [
 

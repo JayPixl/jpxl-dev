@@ -45,7 +45,7 @@ export default function Index() {
   const [firstLoad, setFirstLoad] = useState(true)
 
   let particles = ""
-  for (var i: number = 0; i < 50; i++) {
+  for (var i: number = 0; i < 80; i++) {
     particles += "0"
   }
 
@@ -66,8 +66,8 @@ export default function Index() {
     particles.split("").map((_, i) => anime({
       targets: `.particle${i}`,
       keyframes: [
-        { opacity: 0.3, tarnslateY: 0, left: () => anime.random(-100, 2000), scale: () => anime.random(0.9, 1.2), duration: 0 },
-        { delay: () => anime.random(0, 15000), translateY: () => "-120vh", duration: () => anime.random(2000, 5000), opacity: 0 }
+        { opacity: () => anime.random(10, 50) + "%", tarnslateY: 0, left: () => anime.random(-100, 2000), scale: () => anime.random(90, 150) + "%", duration: 0 },
+        { delay: () => anime.random(0, 3000 + (i * 100)), translateY: () => "-120vh", duration: () => anime.random(2000, 5000), opacity: 0 }
       ],
       easing: "easeInOutSine",
       loop: true
@@ -238,7 +238,7 @@ export default function Index() {
             </li>)}
           </ul>
 
-          <div className={`font-semibold text-xl pt-8 pb-4 transition-colors ${textColors[index]}`}>A bit more about me!</div>
+          <div className={`font-semibold text-xl pt-8 pb-4 transition-colors ${textColors[index]}`}>A bit more about me! ✨</div>
 
           <span className="">
             &nbsp;&nbsp;&nbsp;I have had many hobbies over the years, including art, making card/board games, and skill toys like yo-yo. 🪀
