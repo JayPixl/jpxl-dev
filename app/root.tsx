@@ -38,7 +38,7 @@ export const meta: V2_MetaFunction = () => [
   { property: "twitter:url", content: "https://www.jpxl.dev/" },
   { property: "twitter:title", content: "Joshua Lawrence Jr. - Fullstack Web Developer" },
   { property: "twitter:description", content: "Joshua is a Junior Fullstack Web Developer specializing in JavaScript based technologies and frameworks in Node.js such as React, TypeScript, Express, MongoDB, and SQL." },
-  { property: "twitter:image", content: "https://metatags.io/images/meta-tags.png" }
+  { property: "twitter:image", content: "screenshots/jpxl-dev.png" }
 ]
 
 export const ErrorBoundary: V2_ErrorBoundaryComponent = () => {
