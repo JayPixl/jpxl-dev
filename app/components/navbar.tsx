@@ -2,6 +2,8 @@ import anime from "animejs"
 import { useEffect, useState } from "react"
 import { textColors } from "~/routes/_index"
 import { changeThemes, getTheme } from "~/utils/darkmode"
+import LocalLink from "./local-link"
+import { Link } from "@remix-run/react"
 
 interface props {
     index: number
@@ -32,13 +34,76 @@ export default function Navbar({ index }: props) {
 
     }
 
+    const triggerNav: () => void = () => {
+        setNavOpen(i => !i)
+        anime({
+            targets: ".xl",
+            rotate: navOpen ? [45, 0] : [0, 45],
+            translateY: navOpen ? ["2px", 8] : [8, "2px"]
+        })
+        anime({
+            targets: ".xr",
+            rotate: navOpen ? [-45, 0] : [0, -45],
+            translateY: navOpen ? ["-2px", -8] : [-8, "-2px"]
+        })
+    }
+
+    const [navOpen, setNavOpen] = useState(false)
+
+    const navigation: {
+        name: string,
+        localUrl: boolean,
+        target: string | number
+    }[] = [
+            {
+                name: "Home",
+                localUrl: true,
+                target: 0
+            },
+            {
+                name: "Showcase",
+                localUrl: true,
+                target: "showcase"
+            },
+            {
+                name: "About",
+                localUrl: true,
+                target: "about"
+            },
+            {
+                name: "Contact",
+                localUrl: true,
+                target: "contact"
+            }
+        ]
+
     return <div className="w-full h-[10vh] sticky top-0 md:py-4 bg-primary-light-200 dark:bg-primary-dark-800 bg-opacity-75 dark:bg-opacity-[60%] dark:backdrop-saturate-[120%] backdrop-blur-sm shadow-xl z-30">
-        <div className="w-full h-full relative cursor-pointer hover:scale-105 transition">
-            <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-lg sm:text-xl md:text-2xl font-fira-mono">
+        <div className="w-full h-full relative">
+            <div className="absolute top-[50%] left-[50%] -translate-x-[50%] cursor-pointer -translate-y-[50%] text-lg sm:text-xl md:text-2xl font-fira-mono hover:scale-105 transition">
                 <span className="text-primary-dark-800 dark:text-primary-light-200">jpxl</span>
                 <span className={`${textColors[index]} transition-colors`}>.dev</span>
             </div>
+            <div className="absolute left-5 top-[50%] -translate-y-[50%] cursor-pointer lg:hidden p-4 z-40" onClick={triggerNav}>
+                <div className="h-[3px] w-8 bg-primary-dark-800 dark:bg-primary-light-200 rounded-full origin-center xl translate-y-[8px]" />
+                <div className="h-[3px] w-8 bg-primary-dark-800 dark:bg-primary-light-200 rounded-full origin-center xr -translate-y-[8px]" />
+            </div>
+            <div className="absolute left-5 top-[50%] -translate-y-[50%] hidden lg:flex flex-row items-center z-40">
+                {navigation.map(nav => nav.localUrl ? <LocalLink className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer" target={nav.target} key={nav.name}>
+                    {nav.name}
+                </LocalLink> : <Link to={nav.target.toString()} className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer">
+                    {nav.name}
+                </Link>)}
+            </div>
         </div>
+
+        <div className={`absolute top-[100%] lg:hidden left-0 p-4 bg-primary-light-200 dark:bg-primary-dark-800 z-40 bg-opacity-75 dark:bg-opacity-[60%] dark:backdrop-saturate-[120%] backdrop-blur-sm shadow-xl transition ${navOpen ? "translate-x-0 opacity-100" : "-translate-x-[100%] opacity-0"}`}>
+            {navigation.map(nav => nav.localUrl ? <LocalLink className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer" target={nav.target} key={nav.name}>
+                {nav.name}
+            </LocalLink> : <Link to={nav.target.toString()} className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer">
+                {nav.name}
+            </Link>)}
+        </div>
+
         <div className={`absolute right-5 top-[50%] -translate-y-[50%] bg-primary-dark-800 dark:bg-primary-light-200 flex justify-center items-center p-[2px] rounded-full`}>
             <div className={`dark:bg-primary-dark-800 bg-primary-light-200 flex justify-center items-center p-[2px] rounded-full cursor-pointer relative`}>
                 <div className="text-primary-dark-800 dark:text-primary-light-200" onClick={triggerThemeNav}>
