@@ -34,7 +34,7 @@ export const meta: V2_MetaFunction = () => [
   { property: "og:title", content: "Joshua Lawrence Jr. - Fullstack Web Developer" },
   { property: "og:description", content: "Joshua is a Junior Fullstack Web Developer specializing in JavaScript based technologies and frameworks in Node.js such as React, TypeScript, Express, MongoDB, and SQL." },
   { property: "og:image", content: "https://res.cloudinary.com/dvs0gmvvc/image/upload/v1695935009/jpxl-dev_hg0fgz.png" },
-  { property: "twitter:card", content: "summary_large_image" },
+  { property: "twitter:card", content: "https://res.cloudinary.com/dvs0gmvvc/image/upload/v1695935009/jpxl-dev_hg0fgz.png" },
   { property: "twitter:url", content: "https://www.jpxl.dev/" },
   { property: "twitter:title", content: "Joshua Lawrence Jr. - Fullstack Web Developer" },
   { property: "twitter:description", content: "Joshua is a Junior Fullstack Web Developer specializing in JavaScript based technologies and frameworks in Node.js such as React, TypeScript, Express, MongoDB, and SQL." },
