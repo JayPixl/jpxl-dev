@@ -1,6 +1,6 @@
 import anime from "animejs"
 import { useEffect, useState } from "react"
-import { textColors } from "~/routes/_index"
+import { hoverTextColors, textColors } from "~/routes/_index"
 import { changeThemes, getTheme } from "~/utils/darkmode"
 import LocalLink from "./local-link"
 import { Link } from "@remix-run/react"
@@ -88,18 +88,18 @@ export default function Navbar({ index }: props) {
                 <div className="h-[3px] w-8 bg-primary-dark-800 dark:bg-primary-light-200 rounded-full origin-center xr -translate-y-[8px]" />
             </div>
             <div className="absolute left-5 top-[50%] -translate-y-[50%] hidden lg:flex flex-row items-center z-40">
-                {navigation.map(nav => nav.localUrl ? <LocalLink className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer" target={nav.target} key={nav.name}>
+                {navigation.map(nav => nav.localUrl ? <LocalLink className={`p-4 font-semibold text-lg hover:scale-105 transition cursor-pointer ${hoverTextColors[index]}`} target={nav.target} key={nav.name}>
                     {nav.name}
-                </LocalLink> : <Link to={nav.target.toString()} className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer">
+                </LocalLink> : <Link to={nav.target.toString()} className={`p-4 font-semibold text-lg hover:scale-105 transition cursor-pointer ${hoverTextColors[index]}`}>
                     {nav.name}
                 </Link>)}
             </div>
         </div>
 
         <div className={`absolute top-[100%] lg:hidden left-0 p-4 bg-primary-light-200 dark:bg-primary-dark-800 z-40 bg-opacity-75 dark:bg-opacity-[60%] dark:backdrop-saturate-[120%] backdrop-blur-sm shadow-xl transition ${navOpen ? "translate-x-0 opacity-100" : "-translate-x-[100%] opacity-0"}`}>
-            {navigation.map(nav => nav.localUrl ? <LocalLink className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer" target={nav.target} key={nav.name}>
+            {navigation.map(nav => nav.localUrl ? <LocalLink className={`p-4 font-semibold text-lg hover:scale-105 transition cursor-pointer ${hoverTextColors[index]}`} target={nav.target} key={nav.name}>
                 {nav.name}
-            </LocalLink> : <Link to={nav.target.toString()} className="p-4 font-semibold text-lg hover:scale-105 transition-transform cursor-pointer">
+            </LocalLink> : <Link to={nav.target.toString()} className={`p-4 font-semibold text-lg hover:scale-105 transition cursor-pointer ${hoverTextColors[index]}`}>
                 {nav.name}
             </Link>)}
         </div>

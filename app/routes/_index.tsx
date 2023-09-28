@@ -1,9 +1,12 @@
+import { Link, Outlet } from "@remix-run/react";
 import anime from "animejs";
 import { useEffect, useState } from "react";
+import ReactTextareaAutosize from "react-textarea-autosize";
 import { v4 } from "uuid";
 import CodeBlock from "~/components/codeblock";
 import Layout from "~/components/layout";
 import LocalLink from "~/components/local-link";
+import { Modal } from "~/components/modal";
 import Navbar from "~/components/navbar";
 import TooltipDiv from "~/components/tooltip-div";
 import WordSlideshow from "~/components/word-slideshow";
@@ -42,6 +45,8 @@ export default function Index() {
   const [gradients] = useState(gradientColors)
   const [firstLoad, setFirstLoad] = useState(true)
   const [scroll, setScroll] = useState<number>(0)
+  const [projectsOpen, setProjectsOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(0)
 
   let particles = ""
   for (var i: number = 0; i < 80; i++) {
@@ -140,10 +145,16 @@ export default function Index() {
               className="h-10 w-10 shadow-sm mx-2 cursor-pointer hover:scale-[105%] transition-transform text-white flex justify-center items-center"
               tooltipText={acc.name}
               size="large"
-              link={acc.url}
               key={v4().slice(0, 9)}
             >
-              {acc.children}
+              {acc.local ? <LocalLink
+                target={acc.url}
+              >
+                {acc.children}
+              </LocalLink> : <Link to={acc.url}>
+                {acc.children}
+              </Link>}
+
             </TooltipDiv>)}
           </div>
         </div>
@@ -189,7 +200,7 @@ export default function Index() {
                     key={v4().slice(0, 9)}
                   />)}
                 </div>
-                <div className={`${textColors[index]} animate-pulse transition-colors cursor-pointer`}>
+                <div className={`${textColors[index]} animate-pulse transition-colors cursor-pointer`} onClick={() => { setSelectedProject(i); setProjectsOpen(true) }}>
                   Read More →
                 </div>
               </div>
@@ -197,7 +208,7 @@ export default function Index() {
           </div>)}
         </div>
 
-        <div className={`py-8 w-full text-center ${textColors[index]} transition-colors text-xl cursor-pointer underline hover:no-underline`}>
+        <div onClick={() => setProjectsOpen(true)} className={`py-8 w-full text-center ${textColors[index]} transition-colors text-xl cursor-pointer underline hover:no-underline`}>
           See all
         </div>
       </div>
@@ -271,17 +282,117 @@ export default function Index() {
       </div>
 
 
-      <div className="flex flex-col w-full h-[20vh] justify-center items-center text-center bg-transparent" id="contact">
+      <div className="flex flex-col w-full py-16 px-6 justify-center items-center text-center bg-transparent" id="contact">
+        <div className="w-full max-w-[50rem] md:w-4/5">
+          <div className="italic text-lg md:text-xl">Want to get in touch?</div>
+          <form action="mailto:jaypixl95@gmail.com" method="get" encType="text/plain" className="flex flex-col">
+            <label htmlFor="subject" className="self-start">Subject:</label>
+            <input type="text" name="subject" placeholder="Your Name..." className="p-2 rounded-lg mb-3 bg-white dark:bg-primary-light-200 text-primary-dark-800 border border-primary-dark-950" />
 
+            <label htmlFor="email" className="self-start">Email:</label>
+            <input type="email" name="email" placeholder="Your Email..." className="p-2 rounded-lg mb-3 bg-white dark:bg-primary-light-200 text-primary-dark-800 border border-primary-dark-950" />
+
+            <label htmlFor="body" className="self-start">Message:</label>
+            <ReactTextareaAutosize
+              name="body"
+              placeholder="Your Message..."
+              minRows={3}
+              maxRows={5}
+              className="p-2 resize-none rounded-lg mb-8 bg-white dark:bg-primary-light-200 text-primary-dark-800 border border-primary-dark-950"
+            ></ReactTextareaAutosize>
+
+            <input type="submit" value="Send" className={`self-center py-2 px-8 font-bold text-xl rounded-md transition hover:scale-105 cursor-pointer ${bgColors[index]}`} />
+          </form>
+        </div>
       </div>
 
       <div className={`min-h-[20vh] w-full bg-gradient-to-br overflow-clip relative next-gradient ${gradients[index]}`} id="footer">
         <div className={`absolute z-10 w-full h-full top-0 left-0 opacity-0 bg-gradient-to-br ${firstLoad ? gradients[0] : gradients?.[index - 1] || gradients[gradients.length - 1]} current-gradient`} />
-        <div className={`absolute w-full h-full top-0 left-0 z-20`}>
+        <div className={`absolute w-full h-full top-0 left-0 z-20 flex flex-col justify-center items-center`}>
+          <div className="flex flex-row justify-center items-center">
+            {socials.map(acc => <TooltipDiv
+              className="h-8 w-8 shadow-sm mx-1 cursor-pointer hover:scale-[105%] transition-transform text-white flex justify-center items-center"
+              tooltipText={acc.name}
+              size="large"
+              key={v4().slice(0, 9)}
+            >
+              {acc.local ? <LocalLink
+                target={acc.url}
+              >
+                {acc.children}
+              </LocalLink> : <Link to={acc.url}>
+                {acc.children}
+              </Link>}
 
+            </TooltipDiv>)}
+          </div>
+          <div className="font-light text-sm mt-3 italic">
+            Joshua Lawrence Jr. 2023
+          </div>
         </div>
       </div>
 
+      {projectsOpen ? <Modal isOpen className="w-full h-full m-8 md:w-2/3 bg-primary-light-200 shadow-xl dark:bg-primary-dark-800 text-primary-dark-800 dark:text-primary-light-200 relative" onClick={() => setProjectsOpen(false)}>
+        <div className="absolute top-3 right-3 p-2 cursor-pointer z-40" onClick={() => setProjectsOpen(false)}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-8 h-8">
+            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+          </svg>
+        </div>
+
+        {projects.map((project, i) => selectedProject === i ? <div className={`rounded-lg w-full shadow-md hover:shadow-xl p-4 transition flex flex-col lg:flex-row my-3 proj${i}`} key={`miniproj${i}`}>
+
+          <div className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 lg:m-3 self-center lg:self-start" style={{ backgroundImage: `url(${project.imageUrl})` }} />
+          <div className="flex flex-col h-full w-full justify-between mt-3 lg:mt-0 md:ml-3">
+            <div>
+              <Link to={project.siteLink} className="text-2xl my-2 font-semibold">
+                {project.title}
+              </Link>
+              <Link to={project.siteLink} className="flex flex-row items-center my-1 underline hover:no-underline">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 mr-2">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-1.5 0a6.5 6.5 0 11-11-4.69v.447a3.5 3.5 0 001.025 2.475L8.293 10 8 10.293a1 1 0 000 1.414l1.06 1.06a1.5 1.5 0 01.44 1.061v.363a1 1 0 00.553.894l.276.139a1 1 0 001.342-.448l1.454-2.908a1.5 1.5 0 00-.281-1.731l-.772-.772a1 1 0 00-1.023-.242l-.384.128a.5.5 0 01-.606-.25l-.296-.592a.481.481 0 01.646-.646l.262.131a1 1 0 00.447.106h.188a1 1 0 00.949-1.316l-.068-.204a.5.5 0 01.149-.538l1.44-1.234A6.492 6.492 0 0116.5 10z" clipRule="evenodd" />
+                </svg>
+                <div className="font-light italic">
+                  {project.siteLink}
+                </div>
+              </Link>
+              <Link to={project.sourceLink} className="flex flex-row items-center my-1 underline hover:no-underline">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 mr-2">
+                  <path fillRule="evenodd" d="M6.28 5.22a.75.75 0 010 1.06L2.56 10l3.72 3.72a.75.75 0 01-1.06 1.06L.97 10.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 0zm7.44 0a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L17.44 10l-3.72-3.72a.75.75 0 010-1.06zM11.377 2.011a.75.75 0 01.612.867l-2.5 14.5a.75.75 0 01-1.478-.255l2.5-14.5a.75.75 0 01.866-.612z" clipRule="evenodd" />
+                </svg>
+                <div className="font-light italic">
+                  {project.sourceLink}
+                </div>
+              </Link>
+              <div className="font-light cursor-default my-2">
+                {project.longDescription}
+              </div>
+              <div className="text-lg font-semibold pt-2 pb-1">Skills Demonstrated:</div>
+              <ul className="list-disc ml-6">
+                {project.skillsDemonstrated.map((item, i) => <li key={`skl${i}`} className={`${hoverTextColors[index]} cursor-default transition hover:scale-[102%] hover:translate-x-2`}>
+                  {item}
+                </li>)}
+              </ul>
+            </div>
+            <div className="mb-2 mt-4 w-full flex flex-row items-center justify-between">
+              <div className="flex flex-row items-center flex-wrap">
+                {project.tools.map(tool => <TooltipDiv
+                  className="rounded-full bg-cover bg-center h-10 w-10 shadow-sm border-primary-dark-800 dark:border-primary-light-200 border mr-2"
+                  style={{ backgroundImage: `url(${logos.filter(logo => logo.name === tool)[0]?.url})` }}
+                  tooltipText={tool}
+                  key={v4().slice(0, 9)}
+                />)}
+              </div>
+            </div>
+          </div>
+        </div> : <div className="text-primary-dark-600 hover:text-primary-dark-800 hover:dark:text-primary-light-200 transition-colors rounded-lg w-full shadow-md hover:shadow-xl hover:scale-[101%] p-4 flex flex-row my-3 cursor-pointer" key={`miniproj${i}`} onClick={() => setSelectedProject(i)}>
+
+          <div className="font-bold text-lg">
+            {`>`} {project.title}
+          </div>
+
+        </div>)}
+      </Modal> : ""}
+
     </div>
-  </Layout >
+  </Layout>
 }

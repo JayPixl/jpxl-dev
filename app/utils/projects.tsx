@@ -35,7 +35,8 @@ export const logos: {
 export const socials: {
     name: string,
     children: React.ReactNode,
-    url: string
+    url: string,
+    local?: boolean
 }[] = [
         {
             name: "LinkedIn",
@@ -53,7 +54,8 @@ export const socials: {
                 <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
                 <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
             </svg>,
-            url: ""
+            local: true,
+            url: "contact"
 
         }
     ]
@@ -65,57 +67,77 @@ export const projects: {
     longDescription: string,
     mainTools: string[],
     tools: string[],
-    skillsDemonstrated: string[]
+    skillsDemonstrated: string[],
+    siteLink: string,
+    sourceLink: string
 }[] = [
         {
             title: "OC Mafia",
             imageUrl: "screenshots/ocmafia.png",
             blurb: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
-            longDescription: "",
+            longDescription: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
             mainTools: [
                 "Remix",
                 "MongoDB",
                 "Cloudinary"
             ],
             tools: [
-
+                "Remix",
+                "MongoDB",
+                "Cloudinary"
             ],
             skillsDemonstrated: [
-
-            ]
+                "Fullstack Development",
+                "Database Management",
+                "User Authentication",
+                "Project Deployment"
+            ],
+            siteLink: "https://ocmafia-fly.fly.dev/",
+            sourceLink: "https://github.com/JayPixl/ocmafia"
         },
         {
             title: "pixel-crypt",
             imageUrl: "screenshots/pixelcrypt.png",
             blurb: "I created a simple npm encryption package to demonstrate my knowledge and skills with npm modules and TypeScript, and this demo is a frontend app built with React and TailwindCSS.",
-            longDescription: "",
+            longDescription: "I created a simple npm encryption package to demonstrate my knowledge and skills with npm modules and TypeScript, and this demo is a frontend app built with React and TailwindCSS.",
             mainTools: [
                 "React",
                 "TailwindCSS",
                 "Vite"
             ],
             tools: [
-
+                "React",
+                "TailwindCSS",
+                "Vite"
             ],
             skillsDemonstrated: [
-
-            ]
+                "Npm Package Deployment",
+                "TypeScript Proficiency",
+                "Understanding of Algorithms"
+            ],
+            siteLink: "https://pixel-crypt-demo.vercel.app/",
+            sourceLink: "https://github.com/JayPixl/pixel-crypt"
         },
         {
             title: "jpxl.dev",
             imageUrl: "screenshots/jpxl-dev.png",
             blurb: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
-            longDescription: "",
+            longDescription: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
             mainTools: [
                 "Remix",
                 "Anime.js",
                 "TailwindCSS"
             ],
             tools: [
-
+                "Remix",
+                "Anime.js",
+                "TailwindCSS"
             ],
             skillsDemonstrated: [
-
-            ]
+                "Frontend Design",
+                "Animation"
+            ],
+            siteLink: "https://www.jpxl.dev/",
+            sourceLink: "https://github.com/JayPixl/jpxl-dev"
         }
     ]
