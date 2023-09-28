@@ -1,16 +1,22 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
 import type { LinksFunction, LoaderFunction, MetaFunction, V2_MetaFunction } from "@remix-run/node"
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react"
+import { V2_ErrorBoundaryComponent } from "@remix-run/react/dist/routeModules"
 import { useEffect } from "react"
 
 import stylesheet from "~/tailwindcss.css"
+import Layout from "./components/layout"
+import Navbar from "./components/navbar"
+import { bgColors, borderColors } from "./routes/_index"
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,6 +40,44 @@ export const meta: V2_MetaFunction = () => [
   { property: "twitter:description", content: "Joshua is a Junior Fullstack Web Developer specializing in JavaScript based technologies and frameworks in Node.js such as React, TypeScript, Express, MongoDB, and SQL." },
   { property: "twitter:image", content: "https://metatags.io/images/meta-tags.png" }
 ]
+
+export const ErrorBoundary: V2_ErrorBoundaryComponent = () => {
+  const error: any = useRouteError()
+  console.error(error)
+
+  return <html>
+    <head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Something Went Wrong...</title>
+      <link rel="icon" href="avatar.png" />
+      <Meta />
+      <Links />
+    </head>
+    <body>
+      <Layout>
+        <div className="w-full h-full max-h-full relative">
+          <Navbar index={2} ext />
+          <div className="w-full py-12 px-8 flex flex-col items-center justify-center">
+            <div className="text-3xl py-4 font-semibold">
+              Something Went Wrong...
+            </div>
+            <div className={`py-3 px-2 border-b ${borderColors[2]}`}>
+              <span className="font-semibold text-lg">{error.status} {error.statusText}</span> - <span>{error.data}</span>
+            </div>
+            <div className="text-xl py-8">
+              When life gives you lemons, make lemonade.
+            </div>
+            <Link to={"/"} className={`px-8 py-2 text-2xl ${bgColors[2]} text-primary-light-200 rounded-lg hover:scale-105 transition`}>
+              🍋 Back to Home 🍋
+            </Link>
+          </div>
+        </div>
+      </Layout>
+      <Scripts />
+    </body>
+  </html>
+}
 
 export default function App() {
   useEffect(() => {

@@ -326,7 +326,7 @@ export default function Index() {
 
             </TooltipDiv>)}
           </div>
-          <div className="font-light text-sm mt-3 italic">
+          <div className="font-light text-sm mt-3 italic text-white">
             Joshua Lawrence Jr. 2023
           </div>
         </div>
