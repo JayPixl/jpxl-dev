@@ -43,7 +43,7 @@ const value = format("hello")`
 
         const interval = setInterval(() => {
             if (messages[index]?.[i]) {
-                setWorkingMessage(m => m + messages[index].charAt(i))
+                setWorkingMessage(m => messages[index].slice(0, i))
                 i++
             } else {
                 clearInterval(interval)

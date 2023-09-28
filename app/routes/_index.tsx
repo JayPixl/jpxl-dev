@@ -301,7 +301,7 @@ export default function Index() {
               className="p-2 resize-none rounded-lg mb-8 bg-white dark:bg-primary-light-200 text-primary-dark-800 border border-primary-dark-950"
             ></ReactTextareaAutosize>
 
-            <input type="submit" value="Send" className={`self-center py-2 px-8 font-bold text-xl rounded-md transition hover:scale-105 cursor-pointer ${bgColors[index]}`} />
+            <input type="submit" value="Send" className={`self-center py-2 px-8 font-bold text-xl rounded-md transition hover:scale-105 cursor-pointer text-primary-light-200 ${bgColors[index]}`} />
           </form>
         </div>
       </div>
