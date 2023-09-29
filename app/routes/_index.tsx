@@ -47,6 +47,7 @@ export default function Index() {
   const [scroll, setScroll] = useState<number>(0)
   const [projectsOpen, setProjectsOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState(0)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   let particles = ""
   for (var i: number = 0; i < 80; i++) {
@@ -66,6 +67,12 @@ export default function Index() {
 
   useEffect(() => {
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setReducedMotion(true)
+    } else {
+      setReducedMotion(false)
+    }
+
     particles.split("").map((_, i) => anime({
       targets: `.particle${i}`,
       keyframes: [
@@ -76,7 +83,7 @@ export default function Index() {
       loop: true
     }))
 
-    pixels.split("").map((_, i) => anime({
+    !reducedMotion && pixels.split("").map((_, i) => anime({
       targets: `.pixel${i}`,
       opacity: () => anime.random(0, (((i % 8) * 30) - i)) + "%",
       easing: "easeInOutSine",
@@ -84,7 +91,7 @@ export default function Index() {
       loop: true
     }))
 
-    padPixels.split("").map((_, i) => anime({
+    !reducedMotion && padPixels.split("").map((_, i) => anime({
       targets: `.pad-pixelb${i}`,
       opacity: () => anime.random(0, (((i % 8) * 15) - (i * 8))) + "%",
       easing: "easeInOutSine",
@@ -92,7 +99,7 @@ export default function Index() {
       loop: true
     }))
 
-    padPixels.split("").map((_, i) => anime({
+    !reducedMotion && padPixels.split("").map((_, i) => anime({
       targets: `.pad-pixelt${i}`,
       opacity: () => anime.random(0, (((i % 8) * 15) - ((padPixels.length - i) * 8))) + "%",
       easing: "easeInOutSine",
@@ -158,12 +165,12 @@ export default function Index() {
             </TooltipDiv>)}
           </div>
         </div>
-        {particles.split("").map((_, i) => <div className={`absolute opacity-0 rounded-full w-4 h-4 bg-primary-light-200 drop-shadow-[0_0_65px_0_rgba(220,220,220,0.3)] backdrop-brightness-150 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
+        {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-0 rounded-full w-4 h-4 bg-primary-light-200 drop-shadow-[0_0_65px_0_rgba(220,220,220,0.3)] backdrop-brightness-150 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
       </div>
 
       <div className="w-full h-[100vh] md:h-[50vh] flex flex-col md:flex-row justify-around items-start md:items-center p-8">
         <WordSlideshow index={index} />
-        <CodeBlock index={index} />
+        <CodeBlock reducedMotion={reducedMotion} index={index} />
       </div>
 
       <div className={`w-full h-1 bg-gradient-to-br relative next-gradient ${gradients[index]}`}>
@@ -181,12 +188,12 @@ export default function Index() {
         <div className="w-full flex flex-row flex-wrap">
           {projects.map((project, i) => <div className="rounded-lg md:min-w-[40rem] w-full shadow-md hover:shadow-xl hover:scale-[101%] p-4 transition flex flex-col sm:flex-row my-3" key={`proj${i}`}>
 
-            <div className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 sm:m-3 self-center sm:self-start" style={{ backgroundImage: `url(${project.imageUrl})` }} />
+            <Link to={project.siteLink} className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 sm:m-3 self-center sm:self-start" style={{ backgroundImage: `url(${project.imageUrl})` }} />
             <div className="flex flex-col h-full w-full justify-between mt-3 sm:mt-0 md:ml-3">
               <div>
-                <div className="text-2xl my-2 font-semibold cursor-default">
+                <Link to={project.siteLink} className="text-2xl my-2 font-semibold">
                   {project.title}
-                </div>
+                </Link>
                 <div className="font-light italic cursor-default">
                   {project.blurb}
                 </div>
@@ -216,11 +223,11 @@ export default function Index() {
       <div className={`w-full min-h-screen border-8 transition-colors flex justify-center ${borderColors[index]}`} id="about">
         <div className="bg-primary-light-200 dark:bg-primary-dark-800 w-full sm:w-4/5 max-w-[50rem] h-full p-4 relative">
 
-          <div className="absolute top-[50%] -translate-y-[50%] right-0 scale-75 sm:scale-100 origin-right w-48 h-80 grid grid-cols-8">
+          {!reducedMotion && <div className="absolute top-[50%] -translate-y-[50%] right-0 scale-75 sm:scale-100 origin-right w-48 h-80 grid grid-cols-8">
             {padPixels.split("").map((_, i) => <div className={`w-full h-full transition-colors pad-pixelt${i} ${bgColors[index]}`} key={`pix${i}`} />)}
             {pixels.split("").map((_, i) => <div className={`w-full h-full transition-colors pixel${i} ${bgColors[index]}`} key={`pix${i}`} />)}
             {padPixels.split("").map((_, i) => <div className={`w-full h-full transition-colors pad-pixelb${i} ${bgColors[index]}`} key={`pix${i}`} />)}
-          </div>
+          </div>}
 
           <div className="font-bold text-2xl py-4">Hey there, Joshua here! 👋🏽</div>
 

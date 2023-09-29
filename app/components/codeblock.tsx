@@ -5,11 +5,12 @@ import { textColors } from '~/routes/_index'
 
 interface props {
     index: number
+    reducedMotion: boolean
 }
 
 const compiler = <div className={"text-cyan-500" || "text-fuchsia-500" || "text-rose-500" || "text-amber-500" || "text-blue-600"} />
 
-export default function CodeBlock({ index }: props) {
+export default function CodeBlock({ index, reducedMotion }: props) {
     const messages: string[] = [
         ` // ../sample.jsx
 {items.map((item, index) => <div key={index}>
@@ -42,12 +43,18 @@ const value = format("hello")`
         let i = 0
 
         const interval = setInterval(() => {
-            if (messages[index]?.[i]) {
-                setWorkingMessage(m => messages[index].slice(0, i))
-                i++
-            } else {
+            if (reducedMotion) {
+                setWorkingMessage(m => messages[index])
                 clearInterval(interval)
+            } else {
+                if (messages[index]?.[i]) {
+                    setWorkingMessage(m => messages[index].slice(0, i))
+                    i++
+                } else {
+                    clearInterval(interval)
+                }
             }
+
         }, 25)
 
         return () => clearInterval(interval)

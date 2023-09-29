@@ -92,7 +92,7 @@ export const projects: {
                 "User Authentication",
                 "Project Deployment"
             ],
-            siteLink: "https://ocmafia-fly.fly.dev/",
+            siteLink: "https://ocmafia.jpxl.dev/",
             sourceLink: "https://github.com/JayPixl/ocmafia"
         },
         {
@@ -115,7 +115,7 @@ export const projects: {
                 "TypeScript Proficiency",
                 "Understanding of Algorithms"
             ],
-            siteLink: "https://pixel-crypt-demo.vercel.app/",
+            siteLink: "https://pixel-crypt.jpxl.dev/",
             sourceLink: "https://github.com/JayPixl/pixel-crypt"
         },
         {
