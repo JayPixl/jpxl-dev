@@ -7,6 +7,10 @@ export const logos: {
             url: "https://avatars.githubusercontent.com/u/64235328?s=200&v=4"
         },
         {
+            name: "Express",
+            url: "https://media.zeemly.com/zeemly/product/expressjs.png"
+        },
+        {
             name: "MongoDB",
             url: "logos/mongodb.png"
         },
@@ -71,6 +75,30 @@ export const projects: {
     siteLink: string,
     sourceLink: string
 }[] = [
+        {
+            title: "MERN Etsy Clone",
+            imageUrl: "screenshots/etsy-clone.png",
+            blurb: "I first made this clone back in April using vanilla HTML and CSS, so I recreated it using React and TailwindCSS and added a MongoDB and Express backend to serve the listing data.",
+            longDescription: "I first made this clone back in April using vanilla HTML and CSS, so I recreated it using React and TailwindCSS and added a MongoDB and Express backend to serve the listing data.",
+            mainTools: [
+                "React",
+                "MongoDB",
+                "Express"
+            ],
+            tools: [
+                "React",
+                "MongoDB",
+                "Express"
+            ],
+            skillsDemonstrated: [
+                "MERN Stack Development",
+                "Fullstack Development",
+                "Fast Learning",
+                "Modifying the Vanilla Setup"
+            ],
+            siteLink: "https://etsy-clone.jpxl.dev/",
+            sourceLink: "https://github.com/JayPixl/etsy-clone-react"
+        },
         {
             title: "OC Mafia",
             imageUrl: "screenshots/ocmafia.png",
