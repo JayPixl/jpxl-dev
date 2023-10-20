@@ -31,6 +31,10 @@ export const logos: {
             url: "logos/vite.png"
         },
         {
+            name: "Next.js",
+            url: "logos/nextjs.jpeg"
+        },
+        {
             name: "Anime.js",
             url: "https://th.bing.com/th/id/OIP.FSB1_EVM6flG5hK4GWQ-6AHaHa?pid=ImgDet&rs=1"
         }
@@ -76,6 +80,29 @@ export const projects: {
     sourceLink: string
 }[] = [
         {
+            title: "QR Auth App",
+            imageUrl: "screenshots/qrauth.png",
+            blurb: "I built this very simple QR code authentication app to demonstrate my ability to quickly learn a new framework, as well as my skill and understanding of fullstack web development.",
+            longDescription: "I built this very simple QR code authentication app to demonstrate my ability to quickly learn a new framework, as well as my skill and understanding of fullstack web development.",
+            mainTools: [
+                "Next.js",
+                "TailwindCSS",
+                "MongoDB"
+            ],
+            tools: [
+                "Next.js",
+                "TailwindCSS",
+                "MongoDB"
+            ],
+            skillsDemonstrated: [
+                "Fullstack Development",
+                "User Authentication",
+                "External and Internal APIs"
+            ],
+            siteLink: "https://qr-auth.jpxl.dev/",
+            sourceLink: "https://github.com/JayPixl/qr-auth"
+        },
+        {
             title: "MERN Etsy Clone",
             imageUrl: "screenshots/etsy-clone.png",
             blurb: "I first made this clone back in April using vanilla HTML and CSS, so I recreated it using React and TailwindCSS and added a MongoDB and Express backend to serve the listing data.",
@@ -100,28 +127,26 @@ export const projects: {
             sourceLink: "https://github.com/JayPixl/etsy-clone-react"
         },
         {
-            title: "OC Mafia",
-            imageUrl: "screenshots/ocmafia.png",
-            blurb: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
-            longDescription: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
+            title: "jpxl.dev",
+            imageUrl: "screenshots/jpxl-dev.png",
+            blurb: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
+            longDescription: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
             mainTools: [
                 "Remix",
-                "MongoDB",
-                "Cloudinary"
+                "Anime.js",
+                "TailwindCSS"
             ],
             tools: [
                 "Remix",
-                "MongoDB",
-                "Cloudinary"
+                "Anime.js",
+                "TailwindCSS"
             ],
             skillsDemonstrated: [
-                "Fullstack Development",
-                "Database Management",
-                "User Authentication",
-                "Project Deployment"
+                "Frontend Design",
+                "Animation"
             ],
-            siteLink: "https://ocmafia.jpxl.dev/",
-            sourceLink: "https://github.com/JayPixl/ocmafia"
+            siteLink: "https://www.jpxl.dev/",
+            sourceLink: "https://github.com/JayPixl/jpxl-dev"
         },
         {
             title: "pixel-crypt",
@@ -147,25 +172,27 @@ export const projects: {
             sourceLink: "https://github.com/JayPixl/pixel-crypt"
         },
         {
-            title: "jpxl.dev",
-            imageUrl: "screenshots/jpxl-dev.png",
-            blurb: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
-            longDescription: "Looks kinda familiar, huh? My focus was to build a strong UI and showcase my frontend skills with animations and colorful design.",
+            title: "OC Mafia",
+            imageUrl: "screenshots/ocmafia.png",
+            blurb: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
+            longDescription: "OC Mafia is an online adaptation of Forum Mafia with a stats system and character roleplay. I built this fullstack app using Remix, MongoDB, Cloudinary, and others!",
             mainTools: [
                 "Remix",
-                "Anime.js",
-                "TailwindCSS"
+                "MongoDB",
+                "Cloudinary"
             ],
             tools: [
                 "Remix",
-                "Anime.js",
-                "TailwindCSS"
+                "MongoDB",
+                "Cloudinary"
             ],
             skillsDemonstrated: [
-                "Frontend Design",
-                "Animation"
+                "Fullstack Development",
+                "Database Management",
+                "User Authentication",
+                "Project Deployment"
             ],
-            siteLink: "https://www.jpxl.dev/",
-            sourceLink: "https://github.com/JayPixl/jpxl-dev"
-        }
+            siteLink: "https://ocmafia.jpxl.dev/",
+            sourceLink: "https://github.com/JayPixl/ocmafia"
+        },
     ]

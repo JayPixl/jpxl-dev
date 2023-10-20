@@ -185,8 +185,8 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="w-full flex flex-row flex-wrap">
-          {projects.map((project, i) => <div className="rounded-lg md:min-w-[40rem] w-full shadow-md hover:shadow-xl hover:scale-[101%] p-4 transition flex flex-col sm:flex-row my-3" key={`proj${i}`}>
+        <div className="w-full flex flex-col items-center justify-center">
+          {projects.map((project, i) => <div onClick={() => { setSelectedProject(i); setProjectsOpen(true) }} className="rounded-lg md:min-w-[40rem] w-full shadow-md hover:shadow-xl hover:scale-[101%] cursor-pointer p-4 transition flex flex-col sm:flex-row my-3" key={`proj${i}`}>
 
             <Link to={project.siteLink} className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 sm:m-3 self-center sm:self-start" style={{ backgroundImage: `url(${project.imageUrl})` }} />
             <div className="flex flex-col h-full w-full justify-between mt-3 sm:mt-0 md:ml-3">
@@ -207,7 +207,7 @@ export default function Index() {
                     key={v4().slice(0, 9)}
                   />)}
                 </div>
-                <div className={`${textColors[index]} animate-pulse transition-colors cursor-pointer`} onClick={() => { setSelectedProject(i); setProjectsOpen(true) }}>
+                <div className={`${textColors[index]} animate-pulse transition-colors cursor-pointer`}>
                   Read More →
                 </div>
               </div>
@@ -347,8 +347,9 @@ export default function Index() {
         </div>
 
         {projects.map((project, i) => selectedProject === i ? <div className={`rounded-lg w-full shadow-md hover:shadow-xl p-4 transition flex flex-col lg:flex-row my-3 proj${i}`} key={`miniproj${i}`}>
-
-          <div className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 lg:m-3 self-center lg:self-start" style={{ backgroundImage: `url(${project.imageUrl})` }} />
+          <Link to={project.siteLink}>
+            <div className="h-36 w-60 shrink-0 rounded-md bg-cover bg-center mr-3 lg:m-3 self-center lg:self-start hover:scale-105 transition" style={{ backgroundImage: `url(${project.imageUrl})` }} />
+          </Link>
           <div className="flex flex-col h-full w-full justify-between mt-3 lg:mt-0 md:ml-3">
             <div>
               <Link to={project.siteLink} className="text-2xl my-2 font-semibold">
